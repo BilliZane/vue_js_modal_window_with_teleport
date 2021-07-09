@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="card">
+      <button class="btn primary" @click="modal = true">
+        Открыть модальное окно
+      </button>
+
+      <teleport to="#modal">
+        <app-modal v-if="modal" @close="modal = false"></app-modal>
+      </teleport>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppModal from './components/AppModal.vue'
 
 export default {
-  name: 'App',
+  data () {
+    return {
+      modal: false
+    }
+  },
   components: {
-    HelloWorld
+    AppModal
   }
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style>
 </style>
